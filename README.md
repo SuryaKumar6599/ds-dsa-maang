@@ -1,0 +1,5 @@
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)
+![DS Focused](https://img.shields.io/badge/focus-data%20science-orange)
+![MAANG Ready](https://img.shields.io/badge/interviews-MAANG%20ready-purple)
