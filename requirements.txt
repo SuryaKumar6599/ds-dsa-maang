@@ -1,0 +1,5 @@
+# Core Python testing
+pytest>=7.0
+
+# Optional: type checking & linting (future-ready)
+typing-extensions>=4.0
