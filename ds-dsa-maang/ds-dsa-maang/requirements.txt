@@ -1,0 +1,9 @@
+pytest>=7.0
+typing-extensions>=4.0
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+requests
+flask
