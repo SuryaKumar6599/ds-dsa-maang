@@ -1,0 +1,12 @@
+requests
+streamlit
+openai
+python-dotenv
+pandas
+numpy
+scikit-learn
+matplotlib
+fastapi
+mcp_server
+uvicorn
+llm.client
