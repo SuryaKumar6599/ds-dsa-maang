@@ -5,15 +5,16 @@ def generate(prompt):
         response = requests.post(
             "http://localhost:11434/api/generate",
             json={
-                "model": "llama3",
+                "model": "mistral",   # 👈 use mistral
                 "prompt": prompt,
-                "stream": False
+                "stream": False,
+                "options": {
+                    "temperature": 0.2,
+                    "num_predict": 150
+                }
             },
             timeout=60
         )
-
-        # Debug print
-        print("RAW RESPONSE:", response.text)
 
         data = response.json()
         return data.get("response", "No response from model")

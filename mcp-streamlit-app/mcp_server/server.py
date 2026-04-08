@@ -7,10 +7,6 @@ app = FastAPI()
 def root():
     return {"message": "MCP Server Running"}
 
-@app.get("/tools")
-def list_tools():
-    return get_tools()
-
 @app.post("/execute")
 def execute_tool(payload: dict):
     try:

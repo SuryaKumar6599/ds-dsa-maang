@@ -1,20 +1,23 @@
 from llm.local_llm import generate
 
-# -------- TOOLS -------- #
-
+# -------- TOOL 1: Calculator (deterministic) -------- #
 def calculator(a: int, b: int):
     return a + b
 
+# -------- TOOL 2: Summarization (LLM) -------- #
 def summarize(text: str):
     prompt = f"""
-    Summarize the following text in 3-4 lines:
+You are a precise assistant.
 
-    {text}
-    """
+Summarize the following text in 3 bullet points:
+
+{text}
+
+Summary:
+"""
     return generate(prompt)
 
 # -------- TOOL REGISTRY -------- #
-
 def get_tools():
     return {
         "calculator": calculator,
