@@ -1,18 +1,24 @@
-def cosine_similaririty(a,b):
-    if len(a) != len(b):
-        raise ValueError("Vectors must be of same length")
+import numpy as np
 
-    #dot product
-    dot = 0.0
-    #suqared norms
-    norm_a_sq = 0.0
-    norm_b_sq = 0.0
-
-    if norm_a_sq == 0.0 or norm_b_sq == 0.0:
+def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
+    dot_product = np.dot(a, b)
+    norm_a = np.linalg.norm(a)
+    norm_b = np.linalg.norm(b)
+    
+    # Edge case: Zero vector returns 0.0 (or NaN handling based on spec)
+    if norm_a == 0 or norm_b == 0:
         return 0.0
+    return dot_product / (norm_a * norm_b)
+
+# 🚀 Follow-up: Batch Cosine Similarity
+def batch_cosine_similarity(A: np.ndarray, B: np.ndarray) -> np.ndarray:
+    # A: (N, D), B: (M, D) -> Result: (N, M)
+    dot_products = np.dot(A, B.T)
+    norm_A = np.linalg.norm(A, axis=1, keepdims=True)  # (N, 1)
+    norm_B = np.linalg.norm(B, axis=1, keepdims=True).T  # (1, M)
     
-    norm_a = norm_a_sq ** 0.5
-    norm_b = norm_b_sq ** 0.5
-    
-    return dot / (norm_a * norm_b)
-    
+    # Broadcasting division
+    norms = norm_A * norm_B
+    # Avoid division by zero
+    norms[norms == 0] = 1e-9
+    return dot_products / norms

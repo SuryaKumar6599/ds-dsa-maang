@@ -2,8 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-import torch
-
 def get_causal_mask(seq_len: int) -> torch.Tensor:
     # Creates upper triangular matrix with 1s above diagonal
     # True values mask out (ignore) positions where j > i
