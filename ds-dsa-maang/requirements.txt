@@ -8,3 +8,4 @@ seaborn
 requests
 flask
 torch
+lru_cache
