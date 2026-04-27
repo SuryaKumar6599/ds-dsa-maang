@@ -58,15 +58,15 @@ This is the specific type used by GPT models for text generation.
 
 ## 3. Cross-Attention (The bridge)
 
-This is used in models that translate or connect two different things (like English to French or Text-to-Image). [10, 11]
+This is used in models that translate or connect two different things (like English to French or Text-to-Image).
 
 * How it works: The Queries come from one sequence (e.g., the sentence being generated), but the Keys and Values come from a different sequence (e.g., the original input sentence).
 * Purpose: To help one sequence "pull" information from another.
-* Example: When a translation model is writing the French word "chat," it uses Cross-Attention to look back at the English word "cat" in the original text. [1, 3, 10, 12]
+* Example: When a translation model is writing the French word "chat," it uses Cross-Attention to look back at the English word "cat" in the original text.
 
 ## Other technical variations
 
 * Multi-Head Attention: Running several attention mechanisms in parallel so the model can focus on different aspects (like grammar and sentiment) at the same time.
 * Soft vs. Hard Attention: Soft attention (most common) assigns fractional weights to everything; Hard attention picks exactly one thing to focus on and ignores the rest.
-* Global vs. Local Attention: Global attention looks at the entire sequence; Local attention only looks at a small "window" of nearby words to save computational power. [7, 13, 14, 15, 16]
+* Global vs. Local Attention: Global attention looks at the entire sequence; Local attention only looks at a small "window" of nearby words to save computational power.
   
