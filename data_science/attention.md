@@ -156,8 +156,11 @@ This is used in models that translate or connect two different things (like Engl
 |------|---------|
 
 | "Attention weights are learned parameters" | They're dynamic, recomputed per forward pass. Only `W_Q, W_K, W_V, W_O` are trained. |
+
 | "More heads = always better" | Diminishing returns. Heads compete, overlap, or collapse. GQA/MQA prove fewer K/V heads often suffice. |
+
 | "Softmax just normalizes scores" | It's a differentiable routing gate. Scaling, masking, and temperature directly control gradient flow. |
+
 | "Transformers understand language" | They model statistical dependencies at scale. "Reasoning" is emergent pattern matching, not symbolic logic. |
 
 ### ✅ Quick Self-Test
