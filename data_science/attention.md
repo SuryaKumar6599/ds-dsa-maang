@@ -106,8 +106,7 @@ This is used in models that translate or connect two different things (like Engl
 
 ### ⚙️ Training & Optimization Nuances
 
-    **Gradients flow through the softmax Jacobian, not directly to attention weights**
-
+   **Gradients flow through the softmax Jacobian, not directly to attention weights**
    `∂L/∂A` passes through `∂softmax/∂logits`, which is a dense matrix. This is why attention is differentiable despite being a "routing" mechanism.
    `💡 Matters:` Explains why attention learns smoothly despite discrete-looking weight distributions.
 
@@ -133,9 +132,9 @@ This is used in models that translate or connect two different things (like Engl
     MQA: 1 K/V head for all Q heads. GQA: groups of Q heads share K/V heads. Reduces KV cache size & memory bandwidth.
     `💡 Matters:` Used in Llama 3, Mistral, Gemma. Trades minor perplexity for major inference speedup.
 
----
 ### 🚀 Modern LLM & Research Nuances
-    **RoPE injects position via rotation, not addition**  
+
+  **RoPE injects position via rotation, not addition**  
     Rotates Q/K vectors by position-dependent angles. Preserves relative distance properties naturally.
     `💡 Matters:` Dominates modern LLMs. Enables better length extrapolation than sinusoidal/learned PE.
 
