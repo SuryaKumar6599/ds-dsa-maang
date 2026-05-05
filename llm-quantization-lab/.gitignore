@@ -1,0 +1,26 @@
+# Secrets & Config
+.env
+*.env.*
+
+# Virtual environments & caches
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+
+# ML-specific
+results/*.json
+results/*.csv
+models/*
+!models/.gitkeep
+*.gguf
+*.safetensors
+
+# OS & IDE
+.DS_Store
+.vscode/
+.idea/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/

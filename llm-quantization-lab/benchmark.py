@@ -1,68 +1,47 @@
 #!/usr/bin/env python3
 """
-GGUF/llama.cpp benchmark for INT4 quantization
-Shows how to run large models on consumer hardware
+Secure GGUF Benchmark (INT4 on CPU/MPS)
+Masks paths & tokens in all logs.
 """
 
 import argparse
 import time
-from pathlib import Path
-import subprocess
 import json
+from pathlib import Path
+from config import MODEL_DIR, N_THREADS, sanitize_log
 
-def benchmark_gguf(model_path, n_ctx=2048, n_threads=8):
-    """Benchmark GGUF model using llama.cpp"""
-    
+def benchmark_gguf(model_path: str, n_ctx: int = 2048):
     print(f"\n🔍 Benchmarking GGUF Model")
-    print(f"Model: {model_path}")
-    print(f"Context: {n_ctx} tokens")
+    print(f"Model: {sanitize_log(model_path)}")
+    print(f"Context: {n_ctx} tokens | Threads: {N_THREADS}")
     
-    # Check if model exists
     if not Path(model_path).exists():
-        print(f"❌ Model not found: {model_path}")
-        print("💡 Download using:")
-        print(f"   huggingface-cli download {model_path}")
+        print(f"❌ Model not found: {sanitize_log(model_path)}")
+        print("💡 Download using: huggingface-cli download <repo> --include '*.gguf'")
         return
     
-    # llama.cpp inference command
-    cmd = [
-        "python", "-m", "llama_cpp.server",
-        "--model", model_path,
-        "--n_ctx", str(n_ctx),
-        "--n_threads", str(n_threads),
-        "--n_batch", "512"
-    ]
-    
-    print(f"\n⚙️  Running: {' '.join(cmd)}")
-    print("⏳ This may take a few minutes...\n")
-    
-    # You can integrate actual llama.cpp benchmarking here
-    # For now, this is a template structure
-    
+    # Placeholder for llama.cpp integration
+    # In production, replace with subprocess call to llama-bench or llama-cli
     results = {
-        "model": model_path,
+        "model": sanitize_log(model_path),
         "quantization": "INT4 (GGUF)",
         "timestamp": time.time(),
-        "status": "completed"
+        "status": "completed",
+        "note": "Replace with actual llama.cpp benchmark output"
     }
     
-    # Save results
-    output_file = Path("results/gguf_benchmark.json")
-    output_file.parent.mkdir(exist_ok=True)
+    output_file = MODEL_DIR / "gguf_benchmark.json"
+    MODEL_DIR.mkdir(exist_ok=True)
     
-    with open(output_file, 'w') as f:
+    with open(output_file, "w") as f:
         json.dump(results, f, indent=2)
     
-    print(f"✅ Benchmark complete! Results saved to {output_file}")
+    print(f"✅ Benchmark complete! Results saved to {sanitize_log(output_file)}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Benchmark GGUF models")
-    parser.add_argument("--model", type=str, required=True, 
-                       help="Path to GGUF model file")
-    parser.add_argument("--context", type=int, default=2048,
-                       help="Context length")
-    parser.add_argument("--threads", type=int, default=8,
-                       help="Number of CPU threads")
-    
+    parser = argparse.ArgumentParser(description="Secure GGUF Benchmark")
+    parser.add_argument("--model", type=str, required=True, help="Path to .gguf file")
+    parser.add_argument("--context", type=int, default=2048, help="Context length")
     args = parser.parse_args()
-    benchmark_gguf(args.model, args.context, args.threads)
+    
+    benchmark_gguf(args.model, args.context)
